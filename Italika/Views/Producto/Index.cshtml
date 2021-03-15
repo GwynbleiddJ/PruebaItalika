@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Italika.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Índice</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+
+<form action="@Url.Action("Index", "Producto")", method="get">
+    <div class="row">
+        <div class="col-md-3">@Html.TextBox("filtro", null, new { placeholder = "Filtre su búsqueda", @class = "form-control"})</div>
+        <div class="col-md-3"><button type="submit" class="btn btn-success" style="margin-left:-25px;">Buscar</button></div>
+    </div>
+</form>
+
+<table class="table table-bordered" style="margin-top:10px;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SKU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fert)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroSerie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SKU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fert)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modelo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroSerie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fecha)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.IdProducto }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.IdProducto }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.IdProducto })
+        </td>
+    </tr>
+}
+
+</table>
